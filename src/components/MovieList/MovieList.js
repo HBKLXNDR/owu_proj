@@ -8,7 +8,7 @@ import css from "../Header/Header.module.css";
 
 
 const MovieList = () => {
-    const {movies, next, prev} = useSelector(state => state.movies);
+    const {movies, page} = useSelector(state => state.movies);
     const [query, setQuery] = useSearchParams({page: "1"});
     const dispatch = useDispatch();
 
@@ -30,8 +30,11 @@ const MovieList = () => {
     return (
         <div>
             <div className={css.product_card}>{movies.map(movie => <MovieListCard key={movie.id} movie={movie}/>)}</div>
-            <button disabled={!prev} onClick={prevPage}>prev</button>
-            <button disabled={!next} onClick={nextPage}>next</button>
+            <div className={css.buttons}>
+                <button disabled={page <= 1} onClick={prevPage}>Previous</button>
+                <p>Now you are at the page {page}</p>
+                <button disabled={page >= 500} onClick={nextPage}>Next</button>
+            </div>
         </div>
     );
 };
