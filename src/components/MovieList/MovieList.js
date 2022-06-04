@@ -4,11 +4,15 @@ import {useSearchParams} from "react-router-dom";
 
 import {movieActions} from "../../redux/slices";
 import {MovieListCard} from "../MovieListCard/MovieListCard";
+import css from "../Header/Header.module.css";
+
 
 const MovieList = () => {
     const {movies, next, prev} = useSelector(state => state.movies);
     const [query, setQuery] = useSearchParams({page: "1"});
     const dispatch = useDispatch();
+
+    console.log(movies);
 
     useEffect(() => {
         dispatch(movieActions.getAll({page: query.get("page")}))
@@ -25,9 +29,9 @@ const MovieList = () => {
 
     return (
         <div>
-            <div>{movies.map(movie => <MovieListCard key={movie.id} movie={movie}/>)}</div>
-            <button disabled={!prev} onClick={prevPage}>Prev</button>
-            <button disabled={!next} onClick={nextPage}>Next</button>
+            <div className={css.product_card}>{movies.map(movie => <MovieListCard key={movie.id} movie={movie}/>)}</div>
+            <button disabled={!prev} onClick={prevPage}>prev</button>
+            <button disabled={!next} onClick={nextPage}>next</button>
         </div>
     );
 };

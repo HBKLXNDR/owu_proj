@@ -3,9 +3,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {movieService} from "../../services";
 
 const initialState = {
-    pages: null,
-    next: null,
-    prev: null,
+    page: null,
     movies: [],
 
 };
@@ -27,14 +25,12 @@ const movieSlice = createSlice({
         builder
             .addCase(getAll.fulfilled, (state, action) => {
                     const {
-                        info: {
-                            pages, next, prev
-                        },
+                        page,
                         results
                     } = action.payload;
-                    state.pages = pages
-                    state.next = next
-                    state.prev = prev
+                    state.page = page
+                    // state.next = next
+                    // state.prev = prev
                     state.movies = results
                 }
             )
