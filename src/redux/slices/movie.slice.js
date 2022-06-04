@@ -1,13 +1,12 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-import {movieService} from "../../services/movie.service";
+import {movieService} from "../../services";
 
 const initialState = {
     pages: null,
     next: null,
     prev: null,
     movies: [],
-    currentMovie: null
 
 };
 
@@ -23,10 +22,6 @@ const movieSlice = createSlice({
     name: "movieSlice",
     initialState,
     reducers: {
-        currentMovie: (state, action) => {
-            const {movieName} = action.payload
-            state.currentMovie = movieName
-        }
     },
     extraReducers: (builder) => {
         builder
@@ -46,11 +41,10 @@ const movieSlice = createSlice({
     }
 });
 
-const {reducer: movieReducer, actions: {currentMovie}} = movieSlice;
+const {reducer: movieReducer, actions: {}} = movieSlice;
 
 const movieActions = {
-    getAll,
-    currentMovie
+    getAll
 }
 
 export {
