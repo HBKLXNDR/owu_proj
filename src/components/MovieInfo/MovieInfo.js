@@ -2,25 +2,33 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 
+import css from "../Header/Header.module.css";
+
 const MovieInfo = () => {
-    const [movie, setMovie] = useState(null);
-    const {id} = useParams()
     const {movies} = useSelector(state => state.movies)
+    const {id} = useParams()
+    const [movie, setMovie] = useState({});
 
     useEffect(() => {
         const filter = movies.filter((movie) => movie.id.toString() === id)
         setMovie(filter[0])
-    }, [movies])
+    }, [movie])
 
-    const {poster_path, original_title, genres, release_date, overview, vote_average, runtime} = movie
-    console.log(movie)
+    const {poster_path, original_title, genres, release_date, overview, vote_average, vote_count, original_language} = movie
+
     return (
-        <div>
-            <img src={'https://image.tmdb.org/t/p/original' + poster_path} alt={original_title}/>
-            <h2>{original_title}</h2>
-            <p>{overview}</p>
-            <p>released {release_date} - rating {vote_average}</p>
-            <p>{runtime} Min</p>
+        <div className={css.bigger_container}>
+            <div className={css.product_card_details}>
+                <img src={'https://image.tmdb.org/t/p/original' + poster_path} alt={original_title}/>
+                <div>
+                    <h2>{original_title}</h2>
+                    <div><h4>Overview:</h4><p>{overview}</p></div>
+                    <p>Released on {release_date}</p>
+                    <p>Rating {vote_average}</p>
+                    <p>Voted: {vote_count}</p>
+                    <p>original_language: {original_language}</p>
+                </div>
+            </div>
         </div>
     );
 };
