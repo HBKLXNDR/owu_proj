@@ -5,8 +5,6 @@ import {defaultPoster, noFoundImage} from "../../constants";
 import {Stars} from "../Stars/Stars";
 
 
-// check if onerror is needed??
-
 const MoviesCard = ({movie: {title, vote_average, poster_path, id, release_date}}) => {
     const _url = (defaultPoster + poster_path)
     const navigate = useNavigate();
