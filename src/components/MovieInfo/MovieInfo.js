@@ -1,7 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
-const MovieInfo = ({movie: {poster_path, original_title, genres, release_date, overview, vote_average, runtime}}) => {
+const MovieInfo = () => {
+    const [movie, setMovie] = useState(null);
+    const {id} = useParams()
+    const {movies} = useSelector(state => state.movies)
 
+    useEffect(() => {
+        const filter = movies.filter((movie) => movie.id.toString() === id)
+        setMovie(filter[0])
+    }, [movies])
+
+    const {poster_path, original_title, genres, release_date, overview, vote_average, runtime} = movie
+    console.log(movie)
     return (
         <div>
             <img src={'https://image.tmdb.org/t/p/original' + poster_path} alt={original_title}/>
