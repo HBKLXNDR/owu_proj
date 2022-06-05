@@ -5,6 +5,7 @@ import {movieService} from "../../services";
 const initialState = {
     page: null,
     movies: [],
+    currentMovie: null
 
 };
 
@@ -20,6 +21,10 @@ const movieSlice = createSlice({
     name: "movieSlice",
     initialState,
     reducers: {
+        currentMovie: (state, action) => {
+            const {id} = action.payload;
+            state.currentMovie = id
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -37,10 +42,11 @@ const movieSlice = createSlice({
     }
 });
 
-const {reducer: movieReducer, actions: {}} = movieSlice;
+const {reducer: movieReducer, actions: {currentMovie}} = movieSlice;
 
 const movieActions = {
-    getAll
+    getAll,
+    currentMovie
 }
 
 export {
