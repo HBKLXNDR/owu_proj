@@ -1,34 +1,70 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector} from "react-redux";
-import {useParams} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {useLocation, useParams} from "react-router-dom";
 
 import css from "../Header/Header.module.css";
+import {movieActions} from "../../redux";
+import {defaultPoster, imdbImage, noFoundImage} from "../../constants";
+import {Stars} from "../Stars/Stars";
 
 const MovieInfo = () => {
-    const {movies} = useSelector(state => state.movies)
+    const {state} = useLocation()
+    const {details, genresOfOneMovie} = useSelector(state => state.movies)
     const {id} = useParams()
-    const [movie, setMovie] = useState({});
+    const dispatch = useDispatch();
+    const {
+        budget, title, vote_average,
+        release_date, original_language, overview, poster_path, imdb_id, production_countries, runtime
+    } = details
 
     useEffect(() => {
-        const filter = movies.filter((movie) => movie.id.toString() === id)
-        setMovie(filter[0])
-    }, [movie])
+        if (id) {
+            dispatch(movieActions.getDetails({id}))
+        } else {
+            const {id} = state
+            dispatch(movieActions.getDetails({id}))
+        }
+    })
 
-    const {poster_path, original_title, genres, release_date, overview, vote_average, vote_count, original_language} = movie
+    const countryObject = () => {
+        if (production_countries) {
+            return production_countries.map(value => value.name)
+        } else {
+            return 'unknown'
+        }
+    }
+
+    const clearCountry = countryObject().toString().replace(",", ",")
+    const _url = (defaultPoster + poster_path)
+    const imdbURL = `https://www.imdb.com/title/${imdb_id}/`;
+
 
     return (
         <div className={css.bigger_container}>
             <div className={css.product_card_details}>
-                <img src={'https://image.tmdb.org/t/p/original' + poster_path} alt={original_title}/>
+                <img src={_url} onError={(e) => {
+                    if (e.target.src !== {_url}) {
+                        e.target.onerror = null;
+                        e.target.src = noFoundImage;
+                    }
+                }} alt={title}/>
+
                 <div>
-                    <h2>{original_title}</h2>
+                    <h2>{title}</h2>
                     <div><h4>Overview:</h4><p>{overview}</p></div>
-                    <p>Released on {release_date}</p>
-                    <p>Rating {vote_average}</p>
-                    <p>Voted: {vote_count}</p>
-                    <p>original_language: {original_language}</p>
+                    <div>Genres: <span className={css.text}>{genresOfOneMovie}</span></div>
+                    {clearCountry && <p> Сountry : <span className={css.text}>{clearCountry}</span> </p>}
+                    <p>Length <span className={css.text}>{runtime} min</span></p>
+                    <p>Released on <span className={css.text}> {release_date} </span></p>
+                    {budget !==0 && <p>Budget : <span className={css.text}> {budget}</span></p>}
+                    <p>original_language: <span  className={css.text}>{original_language} </span></p>
+
                 </div>
+
             </div>
+            <div className={css.image}><Stars vote_average={vote_average}/> <a href={imdbURL}><img src={imdbImage} alt="imdb logo"/></a></div>
+
+
         </div>
     );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import {MovieInfo} from "../../components";
 
-const SingleMoviePage = () => {
+const MoviePage = () => {
 
 
     return (
@@ -12,4 +12,4 @@ const SingleMoviePage = () => {
     );
 };
 
-export {SingleMoviePage};
+export {MoviePage};

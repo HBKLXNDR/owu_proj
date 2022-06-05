@@ -8,11 +8,60 @@
     background-color: honeydew;
 }
 
-.header p {
+
+.header a {
+    text-decoration: none;
+    color: #6699cc;
     font-size: 24px;
     line-height: 32px;
     text-align: center;
 }
+
+.fixed {
+    display: flex;
+    flex-direction: column;
+    background-color: honeydew;
+    position: absolute;
+    width: 250px;
+    height: 800px;
+    border-radius: 15px;
+    left: 20px;
+
+    color: black;
+}
+
+.fixed p {
+    color: black;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    font-style: italic;
+}
+
+.inside li {
+    font-size: 18px;
+    line-height: 25px;
+    transition: 0.3s;
+}
+.inside li :hover{
+    background-color: #33a516;
+    cursor: pointer;
+}
+
+.fixed .inside button {
+    width: 150px;
+    padding: 10px 15px;
+    background-color: #000000;
+    border: 1px solid aliceblue;
+    color: white;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.fixed .inside button:hover {
+    transform: scale(1.1);
+}
+
 
 .round {
     background: midnightblue;
@@ -52,9 +101,11 @@
     width: 50px;
     height: 25px;
 }
+
 .toggle_switch input[type="checkbox"] {
     display: none;
 }
+
 .toggle_switch .switch {
     position: absolute;
     cursor: pointer;
@@ -66,6 +117,7 @@
     left: 0;
     transition: background-color 0.2s ease;
 }
+
 .toggle_switch .switch::before {
     position: absolute;
     content: "";
@@ -77,13 +129,16 @@
     border-radius: 50%;
     transition: transform 0.3s ease;
 }
+
 .toggle_switch input[type="checkbox"]:checked + .switch::before {
     transform: translateX(25px);
     background-color: #6699cc;
 }
+
 .toggle_switch input[type="checkbox"]:checked + .switch {
     background-color: #336699;
 }
+
 
 .product_card {
     display: grid;
@@ -121,11 +176,10 @@
 }
 
 .product_card_details {
-    padding: 5px 10px;
+
     display: flex;
     justify-content: space-between;
     column-gap: 20px;
-    border: 5px gray double;
     width: 500px;
 }
 
@@ -138,13 +192,23 @@
     width: 250px;
     height: 100%;
     min-height: 350px;
-    max-height: 550px;
+    max-height: 400px;
 }
 
 .bigger_container {
-    margin: 70px 0;
-    display: flex;
-    justify-content: center;
+    position: relative;
+    left: 25%;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: max-content max-content max-content;
+    align-items: flex-start;
+    padding: 5px 10px;
+    border: 5px gray double;
+    width: 1000px;
+}
+
+.text {
+    color: #33a516;
 }
 
 

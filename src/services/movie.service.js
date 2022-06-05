@@ -1,9 +1,10 @@
 import {axiosService} from "./axios.service";
-import {urls} from "../constants/urls";
+import {urls} from "../constants";
 
 const movieService = {
-    getAll:(page=1)=>axiosService.get(urls.movies, {params:{page}}),
-    getOneMovie:(id)=>axiosService.get(`${urls.movie}/${id}`)
+    getAllMovies:(page=1, with_genres)=>axiosService.get(urls.movie, {params: {page, with_genres}}),
+    getGenres: () => axiosService.get(urls.genres),
+    details: (id) => axiosService.get(`${urls.details}/${id}`),
 }
 
 export {
