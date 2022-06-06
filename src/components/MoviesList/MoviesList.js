@@ -1,8 +1,9 @@
 import React from 'react';
-import css from "../Header/Header.module.css";
 import {useNavigate} from "react-router-dom";
+
 import {defaultPoster, ImageNotFound} from "../../constants";
 import {StarsRating} from "../Stars/StarsRating";
+import css from "../Header/Header.module.css";
 
 
 const MoviesList = ({movie: {title, vote_average, poster_path, id, release_date}}) => {

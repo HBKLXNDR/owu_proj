@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {GenreBadge, MoviesListCard} from "../../components";
 
 const MoviesListPage = () => {

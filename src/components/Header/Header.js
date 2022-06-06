@@ -1,7 +1,6 @@
 import React from 'react';
 import {useDispatch} from "react-redux";
 
-
 import css from "./Header.module.css"
 import {UserInfo} from "../UserInfo/UserInfo";
 import {Switch} from "../Switch/Switch";

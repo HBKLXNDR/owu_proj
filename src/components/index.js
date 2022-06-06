@@ -5,3 +5,5 @@ export * from "./MoviesList/MoviesList";
 export * from "./Footer/Footer";
 export * from "./UserInfo/UserInfo";
 export * from "./GenreBadge/GenreBadge";
+export * from "./Stars/StarsRating";
+export * from "./Switch/Switch";
