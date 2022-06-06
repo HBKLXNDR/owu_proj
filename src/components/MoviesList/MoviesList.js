@@ -1,11 +1,11 @@
 import React from 'react';
 import css from "../Header/Header.module.css";
 import {useNavigate} from "react-router-dom";
-import {defaultPoster, noFoundImage} from "../../constants";
-import {Stars} from "../Stars/Stars";
+import {defaultPoster, ImageNotFound} from "../../constants";
+import {StarsRating} from "../Stars/StarsRating";
 
 
-const MoviesCard = ({movie: {title, vote_average, poster_path, id, release_date}}) => {
+const MoviesList = ({movie: {title, vote_average, poster_path, id, release_date}}) => {
     const _url = (defaultPoster + poster_path)
     const navigate = useNavigate();
 
@@ -18,15 +18,15 @@ const MoviesCard = ({movie: {title, vote_average, poster_path, id, release_date}
             <img src={_url} onError={(e) => {
                 if (e.target.src !== {_url}) {
                     e.target.onerror = null;
-                    e.target.src = noFoundImage;
+                    e.target.src = ImageNotFound;
                 }
             }} alt={title}/>
             <h3>{title}</h3>
-            <Stars vote_average={vote_average}/>
+            <StarsRating vote_average={vote_average}/>
             <p>{release_date}</p>
 
         </div>
     );
 };
 
-export {MoviesCard};
+export {MoviesList};

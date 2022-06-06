@@ -4,7 +4,7 @@ import {useForm} from "react-hook-form";
 import {movieActions} from "../../redux";
 import css from "../Header/Header.module.css"
 
-const Genres = () => {
+const GenreBadge = () => {
     const dispatch = useDispatch();
     const {register, handleSubmit} = useForm();
     const getGenres = (genresArray) => {
@@ -65,4 +65,4 @@ const Genres = () => {
     );
 };
 
-export {Genres};
+export {GenreBadge};

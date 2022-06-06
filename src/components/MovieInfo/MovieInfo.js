@@ -4,8 +4,8 @@ import {useLocation, useParams} from "react-router-dom";
 
 import css from "../Header/Header.module.css";
 import {movieActions} from "../../redux";
-import {defaultPoster, imdbImage, noFoundImage} from "../../constants";
-import {Stars} from "../Stars/Stars";
+import {defaultPoster, imdbImage, ImageNotFound} from "../../constants";
+import {StarsRating} from "../Stars/StarsRating";
 
 const MovieInfo = () => {
     const {state} = useLocation()
@@ -45,7 +45,7 @@ const MovieInfo = () => {
                 <img src={_url} onError={(e) => {
                     if (e.target.src !== {_url}) {
                         e.target.onerror = null;
-                        e.target.src = noFoundImage;
+                        e.target.src = ImageNotFound;
                     }
                 }} alt={title}/>
 
@@ -62,7 +62,7 @@ const MovieInfo = () => {
                 </div>
 
             </div>
-            <div className={css.image}><Stars vote_average={vote_average}/> <a href={imdbURL}><img src={imdbImage} alt="imdb logo"/></a></div>
+            <div className={css.image}><StarsRating vote_average={vote_average}/> <a href={imdbURL}><img src={imdbImage} alt="imdb logo"/></a></div>
 
 
         </div>

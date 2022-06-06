@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import css from "./Stars.css"
-const Stars = ({vote_average}) => {
+const StarsRating = ({vote_average}) => {
     const [rating, setRating] = useState(null);
     useEffect(()=>{
         setRating(vote_average)
@@ -28,4 +28,4 @@ const Stars = ({vote_average}) => {
     );
 };
 
-export {Stars};
+export {StarsRating};

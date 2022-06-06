@@ -1,10 +1,10 @@
 import React from 'react';
-import {Genres, MoviesListCard} from "../../components";
+import {GenreBadge, MoviesListCard} from "../../components";
 
 const MoviesListPage = () => {
     return (
         <div>
-            <Genres/>
+            <GenreBadge/>
             <MoviesListCard/>
         </div>
     );

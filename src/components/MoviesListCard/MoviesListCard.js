@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useSearchParams} from "react-router-dom";
 
 import {movieActions} from "../../redux";
-import {MoviesCard} from "../MoviesCard/MoviesCard";
+import {MoviesList} from "../MoviesList/MoviesList";
 import css from "../Header/Header.module.css";
 
 
@@ -38,7 +38,7 @@ const MoviesListCard = () => {
                 <p>Now you are at the page {currentPage}</p>
                 <button disabled={currentPage >= total_pages} onClick={nextPage}>Next</button>
             </div>
-            <div className={css.product_card}>{movies && movies.map(movie => <MoviesCard key={movie.id} movie={movie}/>)}</div>
+            <div className={css.product_card}>{movies && movies.map(movie => <MoviesList key={movie.id} movie={movie}/>)}</div>
             <div className={css.buttons}>
                 <button disabled={currentPage <= 1} onClick={prevPage}>Previous</button>
                 <p>Now you are at the page {currentPage}</p>
